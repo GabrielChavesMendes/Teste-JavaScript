@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <script src="script.js"></script>
+</head>
+
+<body>
+
+    <div class="container"> 
+        <h1 class="titulo">Treino Personalizado: Marco Túlio</h1>
+        <div class="informação">
+          <h3>Objetivo:</h3>
+          <h3>Tipo: Treino para Endomorfo</h3>
+          <h3>Data: 02/10/2023</h3>
+        </div>
+          
+        <h2>Fichas de Treino</h2>
+
+    <div class="card">
+   
+    <div id="meuCard" style="display: none;">
+        <div id="conteudo"></div>
+
+        <script>
+           
+    
+            // Acessando e exibindo os dados em HTML
+            const conteudo = document.getElementById("conteudo");
+            conteudo.innerHTML = `
+                <h2>${dados.pessoa1.nome}</h2>
+                <p>Idade: ${dados.pessoa1.idade}</p>
+                <p>Cidade: ${dados.pessoa1.cidade}</p>
+    
+                <h2>${dados.pessoa2.nome}</h2>
+                <p>Idade: ${dados.pessoa2.idade}</p>
+                <p>Cidade: ${dados.pessoa2.cidade}</p>
+    
+                <h2>${dados.pessoa3.nome}</h2>
+                <p>Idade: ${dados.pessoa3.idade}</p>
+                <p>Cidade: ${dados.pessoa3.cidade}</p>
+
+                <h2>${dados.pessoa4.nome}</h2>
+                <p>Idade: ${dados.pessoa4.idade}</p>
+                <p>Cidade: ${dados.pessoa4.cidade}</p>
+            `;
+        </script>
+    </div>
+
+    </div>
+
+     <div id="meuCard" style="display: none;">
+        <div id="conteudo"></div>
+
+        <script>
+            // Recupere a string JSON da página 1 (json_data.html)
+            const jsonString = `{"pessoa1":{"nome":"João","idade":30,"cidade":"São Paulo"},"pessoa2":{"nome":"Maria","idade":25,"cidade":"Rio de Janeiro"},"pessoa3":{"nome":"Carlos","idade":35,"cidade":"Belo Horizonte"}}`;
+
+            // Parseie a string JSON de volta para um objeto JavaScript
+            const dados = JSON.parse(jsonString);
+    
+            // Acessando e exibindo os dados em HTML
+            const conteudo = document.getElementById("conteudo");
+            conteudo.innerHTML = `
+                <h2>${dados.pessoa1.nome}</h2>
+                <p>Idade: ${dados.pessoa1.idade}</p>
+                <p>Cidade: ${dados.pessoa1.cidade}</p>
+    
+                <h2>${dados.pessoa2.nome}</h2>
+                <p>Idade: ${dados.pessoa2.idade}</p>
+                <p>Cidade: ${dados.pessoa2.cidade}</p>
+    
+                <h2>${dados.pessoa3.nome}</h2>
+                <p>Idade: ${dados.pessoa3.idade}</p>
+                <p>Cidade: ${dados.pessoa3.cidade}</p>
+
+                <h2>${dados.pessoa4.nome}</h2>
+                <p>Idade: ${dados.pessoa4.idade}</p>
+                <p>Cidade: ${dados.pessoa4.cidade}</p>
+            `;
+        </script>
+    </div>
+
+    </div>
+
+
+    <button onclick="exibirCard()">Exibir Card</button>
+    <button onclick="exibirCard2()">Exibir Card</button>
+
+
+
+  
+</body>
+
+</html>
