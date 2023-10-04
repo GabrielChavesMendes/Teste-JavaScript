@@ -1,73 +1,48 @@
-function exibirCard() {
-    const card = document.getElementById("meuCard");
+document.addEventListener("DOMContentLoaded", function () {
+    fetch('treinos.json')
+        .then(response => response.json())
+        .then(data => {
+            const fichasDeTreino = data.fichasDeTreino;
+            const fichasTreinoDiv = document.getElementById('fichasTreino');
 
-    if (card.style.display === "none" || card.style.display === "") {
-        card.style.display = "block";
-    } else {
-        card.style.display = "none";
-    }
-}
-function exibirCard2() {
-    const card = document.getElementById("meuCard2");
+            function toggleFicha(ficha) {
+                const fichaContainer = document.getElementById(`ficha${ficha.id}`);
+                if (fichaContainer.style.display === 'none' || fichaContainer.style.display === '') {
+                    fichaContainer.style.display = 'block';
+                } else {
+                    fichaContainer.style.display = 'none';
+                }
+            }
 
-    if (card.style.display === "none" || card.style.display === "") {
-        card.style.display = "block";
-    } else {
-        card.style.display = "none";
-    }
-}
+            function adicionarFicha(ficha) {
+                const fichaDiv = document.createElement('div');
+                fichaDiv.classList.add('ficha');
 
+                const button = document.createElement('button');
+                button.textContent = ficha.titulo;
+                button.onclick = () => {
+                    toggleFicha(ficha);
+                };
 
-  // Referencie o objeto JSON
-  const dadosJSON = {
-    "dados1": {
-        "pessoa1": {
-            "nome": "João",
-            "idade": 30,
-            "cidade": "São Paulo"
-        },
-        "pessoa2": {
-            "nome": "Maria",
-            "idade": 25,
-            "cidade": "Rio de Janeiro"
-        },
-        "pessoa3": {
-            "nome": "Carlos",
-            "idade": 35,
-            "cidade": "Belo Horizonte"
-        },
-        "pessoa4": {
-            "nome": "Carlos",
-            "idade": 35,
-            "cidade": "Belo Horizonte"
-        }
-    },
-    "dados2": {
-        "pessoa1": {
-            "nome": "João",
-            "idade": 30,
-            "cidade": "São Paulo"
-        },
-        "pessoa2": {
-            "nome": "Maria",
-            "idade": 25,
-            "cidade": "Rio de Janeiro"
-        },
-        "pessoa3": {
-            "nome": "Carlos",
-            "idade": 35,
-            "cidade": "Belo Horizonte"
-        },
-        "pessoa4": {
-            "nome": "Carlos",
-            "idade": 35,
-            "cidade": "Belo Horizonte"
-        }
-    }
-};
+                fichasTreinoDiv.appendChild(button);
 
- // Converta o objeto JSON para uma string JSON
- const jsonString = JSON.stringify(dados);
+                const fichaContainer = document.createElement('div');
+                fichaContainer.id = `ficha${ficha.id}`;
+                fichaContainer.style.display = 'none';
+                fichaContainer.innerHTML = `
+                    <h2>${ficha.titulo}</h2>
+                    <p>Tipo: ${ficha.tipo}</p>
+                    <p>Alongamento: ${ficha.alongamento.descricao}</p>
+                    <iframe width="360" height="200" src="${ficha.alongamento.videoURL}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <p>Exercícios:</p>
+                    ${ficha.exercicios.map(exercicio => `<p>${exercicio.nome}</p><iframe width="360" height="200" src="${exercicio.videoURL}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`).join('')}
+                `;
 
- // Exiba a string JSON no console para uso posterior
- console.log(jsonString);
+                fichasTreinoDiv.appendChild(fichaContainer);
+            }
+
+            fichasDeTreino.forEach(ficha => {
+                adicionarFicha(ficha);
+            });
+        });
+});
